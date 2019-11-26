@@ -115,6 +115,8 @@
 			dependencies = (
 			);
 			name = ItalianPlumber;
+			packageProductDependencies = (
+			);
 			productName = ItalianPlumber;
 			productReference = 1B2DA9B8238DD8670074FB54 /* ItalianPlumber.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +167,8 @@
 				Base,
 			);
 			mainGroup = 1B2DA9AF238DD8670074FB54;
+			packageReferences = (
+			);
 			productRefGroup = 1B2DA9B9238DD8670074FB54 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
