@@ -12,5 +12,8 @@ pool:
 steps:
 - task: CmdLine@2
   inputs:
+    script: "xcrun simctl list"
+- task: CmdLine@2
+  inputs:
     script: "xcodebuild -project ItalianPlumber.xcodeproj -scheme $(scheme) -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=13.3' test"
 
