@@ -12,4 +12,4 @@ pool:
 steps:
 # - task: CmdLine@2
   inputs:
-    script: 'xcodebuild -project ItalianPlumber.xcodeproj -scheme $(scheme) -sdk iphonesimulator -destination ''platform=iOS Simulator,name=iPhone Xs,OS=13.2.2'' test'
+    script: 'xcodebuild -project ItalianPlumber.xcodeproj -scheme $(scheme) -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xs,OS=13.2.2' test'
