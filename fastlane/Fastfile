@@ -41,7 +41,8 @@ platform :ios do
     build_app(project: "#{xcodeproj}",
               scheme: scheme,
               sdk: iphonesimulator,
-              clean: true)
+              clean: true,
+              export_team_id: 'VWUE9JZKY9')
     
     upload_to_testflight(
       app_identifier: bundleID,
