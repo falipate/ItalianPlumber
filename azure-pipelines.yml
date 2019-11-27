@@ -50,6 +50,10 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'ls -lahR $(agent.buildDirectory)'
+- task: CmdLine@2
+  inputs:
+    script: 'ls -lahR ~/Library/Developer/Xcode/DerivedData/ItalianPlumber*/'
+    
 # - task: AppStoreRelease@1
 #   inputs:
 #     authType: 'UserAndPass'
