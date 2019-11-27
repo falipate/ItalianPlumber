@@ -37,15 +37,18 @@ steps:
     scheme: '$(SCHEME)'
     packageApp: true
     archivePath: 'archive/$(SCHEME)'
-    useXcpretty: false
-- task: Xcode@5
-  inputs:
-    actions: 'exportArchive'
-    packageApp: true
-    archivePath: 'archive/$(SCHEME)'
     exportPath: 'output/$(SCHEME)'
     signingOption: 'auto'
     teamId: '$(team_id)'
+    useXcpretty: false
+# - task: Xcode@5
+#   inputs:
+#     actions: 'exportArchive'
+#     packageApp: true
+#     archivePath: 'archive/$(SCHEME)'
+#     exportPath: 'output/$(SCHEME)'
+#     signingOption: 'auto'
+#     teamId: '$(team_id)'
 - task: CmdLine@2
   inputs:
     script: 'ls -lahR'
