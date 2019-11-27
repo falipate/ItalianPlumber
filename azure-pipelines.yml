@@ -35,15 +35,16 @@ steps:
     scheme: '$(SCHEME)'
     args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
     useXcpretty: false
-- task: Xcode@5
-  inputs:
-    actions: '-exportArchive'
-    packageApp: true
-    archivePath: '$(agent.buildDirectory)/archives/$(PROJECT_NAME)'
-    exportPath: '$(agent.buildDirectory)/output/$(PROJECT_NAME)'
-    signingOption: 'auto'
-    teamId: '$(team_id)'
-    useXcpretty: false
+# - task: Xcode@5
+#   inputs:
+#     actions: '-exportArchive'
+#     packageApp: true
+#     archivePath: '$(agent.buildDirectory)/archives/$(PROJECT_NAME)'
+#     exportPath: '$(agent.buildDirectory)/output/$(PROJECT_NAME)'
+#     args: '-exportArchive -exportPath $(agent.buildDirectory)/output/$(PROJECT_NAME) -archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME) CODE_SIGNING_STYLE=Automatic TEAM_ID=$(team_id)'
+#     signingOption: 'auto'
+#     teamId: '$(team_id)'
+#     useXcpretty: false
 - task: CmdLine@2
   inputs:
     script: 
