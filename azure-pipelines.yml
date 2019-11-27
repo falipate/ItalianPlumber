@@ -42,14 +42,6 @@ steps:
     teamId: '$(team_id)'
     args: '-allowProvisioningUpdates'
     useXcpretty: false
-    scheme: '$(SCHEME)'
-    packageApp: true
-    archivePath: 'archive/$(SCHEME)'
-    exportPath: 'output/$(SCHEME)'
-    exportArgs: '-allowProvisioningUpdates'
-    signingOption: 'auto'
-    teamId: '$(team_id)'
-    useXcpretty: false
 # - task: Xcode@5
 #   inputs:
 #     actions: 'exportArchive'
