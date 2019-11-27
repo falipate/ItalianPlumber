@@ -41,6 +41,7 @@ steps:
     signingOption: 'manual'
     provisioningProfileUuid: 'fdb553c8-d4ea-4e9f-aff5-44d801940172'
     args: '-allowProvisioningUpdates'
+    teamId: '$(team_id)'
     useXcpretty: false
 # - task: Xcode@5
 #   inputs:
