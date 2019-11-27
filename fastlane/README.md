@@ -35,18 +35,16 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
-### ios beta
+### ios build_and_upload
 ```
-fastlane ios beta
+fastlane ios build_and_upload
 ```
-Submit a new Beta Build to Apple TestFlight
-
-This will also make sure the profile is up to date
-### ios release
+Build App
+### ios bump
 ```
-fastlane ios release
+fastlane ios bump
 ```
-Deploy a new version to the App Store
+Bump Version
 
 ----
 
