@@ -10,14 +10,6 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-- task: Xcode@5
+# - task: CmdLine@2
   inputs:
-    actions: 'clean build test'
-    configuration: 
-    sdk: 'iphoneos'
-    scheme: '$(scheme)'
-    packageApp: true
-    signingOption: 'auto'
-    teamId: 'VWUE9JZKY9'
-    destinationPlatformOption: 'iOS'
-    destinationSimulators: 'iPhone 11 Pro'
+    script: 'xcodebuild -project ItalianPlumber.xcodeproj -scheme $(scheme) -sdk iphonesimulator -destination ''platform=iOS Simulator,name=iPhone Xs,OS=13.2.2'' test'
