@@ -28,6 +28,13 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: '$(profile_appstore)'
     removeProfile: false
+- task: Xcode@5
+  inputs:
+    actions: 'build archive'
+    xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
+    scheme: '$(SCHEME)'
+    packageApp: true
+    signingOption: 'default'
 - task: AppStoreRelease@1
   inputs:
     authType: 'UserAndPass'
