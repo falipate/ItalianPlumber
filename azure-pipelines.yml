@@ -33,7 +33,8 @@ steps:
     actions: 'clean build archive'
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
-    packageApp: false
+    packageApp: true
+    exportPath: '$(agent.buildDirectory)/output/$(SCHEME)'
     signingOption: 'default'
     args: '-allowProvisioningUpdates'
     useXcpretty: false
