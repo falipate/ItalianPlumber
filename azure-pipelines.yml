@@ -23,11 +23,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'fastlane test'
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: '$(profile_appstore)'
-    removeProfile: false
+# - task: InstallAppleProvisioningProfile@1
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: '$(profile_appstore)'
+#     removeProfile: false
 - task: CmdLine@2
   inputs:
     script: 'fastlane build_and_upload'
