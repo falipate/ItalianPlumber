@@ -27,7 +27,7 @@ steps:
     removeProfile: false
 - task: CmdLine@2
   inputs:
-    script: 'fastlane build_and-upload'
+    script: 'fastlane build_and_upload'
 # - task: CmdLine@2
 #   inputs:
 #     script: 'fastlane test'
