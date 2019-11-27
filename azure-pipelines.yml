@@ -30,13 +30,14 @@ steps:
     removeProfile: false
 - task: Xcode@5
   inputs:
-    actions: 'build archive'
+    actions: 'clean build archive'
     configuration: 'Release'
     sdk: 'iphonesimulator'
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
     packageApp: true
-    exportPath: ''
+    archivePath: 'archives'
+    exportPath: 'export'
 - task: CmdLine@2
   inputs:
     script: 'ls -lahR'
