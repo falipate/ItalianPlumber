@@ -12,8 +12,12 @@ pool:
 steps:
 - task: Xcode@5
   inputs:
-    actions: 'build'
-    scheme: 'ItalianPlumber'
+    actions: 'clean build test'
+    configuration: 
     sdk: 'iphoneos'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
+    scheme: '$(scheme)'
+    packageApp: true
+    signingOption: 'auto'
+    teamId: 'VWUE9JZKY9'
+    destinationPlatformOption: 'iOS'
+    destinationSimulators: 'iPhone 11 Pro'
