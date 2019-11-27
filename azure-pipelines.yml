@@ -38,7 +38,7 @@ steps:
 #     script: 'fastlane test'
 - task: Xcode@5
   inputs:
-    actions: 'clean build archive'
+    actions: 'clean build'
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
     packageApp: false
