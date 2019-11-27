@@ -10,6 +10,16 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-- script: fastlane test
-  displayName: 'Run a one-line script'
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: '$(certificate)'
+    certPwd: '$(certificate_pw)'
+    keychain: 'temp'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: '$(profile_dev)'
+- task: CmdLine@2
+  inputs:
+    script: 'fastlane test'
 
