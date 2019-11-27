@@ -47,7 +47,7 @@ steps:
 #     teamId: '$(team_id)'
 - task: CmdLine@2
   inputs:
-    script: 'ls -lahR'
+    script: 'ls -lahR $(agent.buildDirectory)'
 # - task: AppStoreRelease@1
 #   inputs:
 #     authType: 'UserAndPass'
