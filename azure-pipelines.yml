@@ -31,11 +31,12 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'build archive'
+    configuration: 'Release'
+    sdk: 'iphonesimulator'
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
     packageApp: true
     exportPath: 'output/$(SCHEME)'
-    signingOption: 'default'
 - task: AppStoreRelease@1
   inputs:
     authType: 'UserAndPass'
