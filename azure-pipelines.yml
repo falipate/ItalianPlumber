@@ -33,7 +33,7 @@ steps:
     actions: 'clean build archive'
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
-    exportArgs: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
+    args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
     useXcpretty: false
 - task: Xcode@5
   inputs:
