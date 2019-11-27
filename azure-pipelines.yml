@@ -34,7 +34,7 @@ steps:
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
     packageApp: true
-    archivePath: '$(agent.buildDirectory)/archive/$(SCHEME).archive'
+    exportPath: '$(agent.buildDirectory)/output/$(PROJECT_NAME)'
     signingOption: 'auto'
     teamId: '$(team_id)'
     useXcpretty: false
