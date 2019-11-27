@@ -25,16 +25,19 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: '$(profile_dev)'
     removeProfile: false
+- task: CmdLine@2
+  inputs:
+    script: 'fastlane build_and-upload'
 # - task: CmdLine@2
 #   inputs:
 #     script: 'fastlane test'
-- task: Xcode@5
-  inputs:
-    actions: 'clean build archive'
-    xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
-    scheme: '$(SCHEME)'
-    args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
-    useXcpretty: false
+# - task: Xcode@5
+#   inputs:
+#     actions: 'clean build archive'
+#     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
+#     scheme: '$(SCHEME)'
+#     args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
+#     useXcpretty: false
 # - task: Xcode@5
 #   inputs:
 #     actions: '-exportArchive'
@@ -45,11 +48,11 @@ steps:
 #     signingOption: 'auto'
 #     teamId: '$(team_id)'
 #     useXcpretty: false
-- task: CmdLine@2
-  inputs:
-    script: 
-        ls -lahR $(agent.buildDirectory) | grep archive
-        ls -lahR ~/Library/Developer/Xcode/DerivedData/ItalianPlumber*/ | grep archive
+# - task: CmdLine@2
+#   inputs:
+#     script: 
+#         ls -lahR $(agent.buildDirectory) | grep archive
+#         ls -lahR ~/Library/Developer/Xcode/DerivedData/ItalianPlumber*/ | grep archive
 # - task: AppStoreRelease@1
 #   inputs:
 #     authType: 'UserAndPass'
