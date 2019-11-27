@@ -38,6 +38,7 @@ steps:
     packageApp: true
     archivePath: 'archives'
     exportPath: 'export'
+    useXcpretty: false
 - task: CmdLine@2
   inputs:
     script: 'ls -lahR'
