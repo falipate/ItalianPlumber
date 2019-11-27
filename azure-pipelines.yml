@@ -32,13 +32,20 @@ steps:
   inputs:
     actions: 'clean build archive'
     configuration: 'Release'
-    sdk: 'iphonesimulator'
+    sdk: 'iphoneos'
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
     packageApp: true
-    archivePath: 'archives'
-    exportPath: 'export'
+    archivePath: 'archive/$(SCHEME)'
     useXcpretty: false
+- task: Xcode@5
+  inputs:
+    actions: 'exportArchive'
+    packageApp: true
+    archivePath: 'archive/$(SCHEME)'
+    exportPath: 'output/$(SCHEME)'
+    signingOption: 'auto'
+    teamId: '$(team_id)'
 - task: CmdLine@2
   inputs:
     script: 'ls -lahR'
