@@ -42,10 +42,20 @@ steps:
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
     packageApp: false
-    destinationPlatformOption: 'custom'
-    destinationPlatform: 'generic/platform=iOS'
+    signingOption: 'auto'
+    teamId: '$(team_id)'
     args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
     useXcpretty: false
+# - task: Xcode@5
+#   inputs:
+#     actions: 'clean build archive'
+#     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
+#     scheme: '$(SCHEME)'
+#     packageApp: false
+#     destinationPlatformOption: 'custom'
+#     destinationPlatform: 'generic/platform=iOS'
+#     args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
+#     useXcpretty: false
 # - task: Xcode@5
 #   inputs:
 #     actions: '-exportArchive'
