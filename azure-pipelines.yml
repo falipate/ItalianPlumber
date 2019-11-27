@@ -36,7 +36,6 @@ steps:
     packageApp: true
     exportPath: '$(agent.buildDirectory)/output/$(SCHEME)'
     signingOption: 'default'
-    args: '-allowProvisioningUpdates'
     useXcpretty: false
 # - task: Xcode@5
 #   inputs:
