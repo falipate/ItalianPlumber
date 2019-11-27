@@ -48,11 +48,9 @@ steps:
 #     teamId: '$(team_id)'
 - task: CmdLine@2
   inputs:
-    script: 'ls -lahR $(agent.buildDirectory)'
-- task: CmdLine@2
-  inputs:
-    script: 'ls -lahR ~/Library/Developer/Xcode/DerivedData/ItalianPlumber*/'
-    
+    script: 
+        ls -lahR $(agent.buildDirectory) | grep archive
+        ls -lahR ~/Library/Developer/Xcode/DerivedData/ItalianPlumber*/ | grep archive
 # - task: AppStoreRelease@1
 #   inputs:
 #     authType: 'UserAndPass'
