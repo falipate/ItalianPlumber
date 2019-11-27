@@ -23,12 +23,24 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'fastlane test'
-# - task: InstallAppleProvisioningProfile@1
-#   inputs:
-#     provisioningProfileLocation: 'secureFiles'
-#     provProfileSecureFile: '$(profile_appstore)'
-#     removeProfile: false
-- task: CmdLine@2
+- task: InstallAppleProvisioningProfile@1
   inputs:
-    script: 'fastlane build_and_upload'
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: '$(profile_appstore)'
+    removeProfile: false
+- task: AppStoreRelease@1
+  inputs:
+    authType: 'UserAndPass'
+    username: 'bszamody@gmail.com'
+    password: '$(apple_id_pw)'
+    isTwoFactorAuth: true
+    appSpecificPassword: '$(app_specific_pw)'
+    fastlaneSession: '---\n- !ruby/object:HTTP::Cookie\n  name: DES5114d07b7f1af91f495ce6634c62f2453\n  value: HSARMTKNSRVXWFla7bVc8/JBWzv5UbH6N8s9sR2bYHYW/MdKbR7yzYo6gofmMuHY7BtZKqOdgAz703VsByAru8oc48T8aT9Mnw+ZbJ2eq+4nmsjmp2N+I3GPENbDMiN3CXUKlsB+5A==SRVX\n  domain: idmsa.apple.com\n  for_domain: true\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 2592000\n  created_at: 2019-11-27 13:40:29.920222000 +11:00\n  accessed_at: 2019-11-27 15:20:01.063204000 +11:00\n- !ruby/object:HTTP::Cookie\n  name: dqsid\n  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzQ4Mjg0MDIsImp0aSI6ImQ0djBYUnp1WHZ4ZkRScXFpQlR6WXcifQ.SZJ2VnfusD6oNxLgA_T__ZnVHXAmh3eML0VnpzVydr0\n  domain: itunesconnect.apple.com\n  for_domain: false\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 1799\n  created_at: &1 2019-11-27 15:20:02.545192000 +11:00\n  accessed_at: *1\n'
+    appIdentifier: '$(BUNDLE_ID)'
+    appType: 'iOS'
+    ipaPath: '**/*.ipa'
+    releaseTrack: 'TestFlight'
+    releaseNotes: 'Fixes'
+    distributedToExternalTesters: true
+    externalTestersGroups: 'External Testers'
 
