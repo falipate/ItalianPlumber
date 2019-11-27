@@ -33,19 +33,17 @@ steps:
     actions: 'clean build archive'
     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
     scheme: '$(SCHEME)'
+    exportArgs: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
+    useXcpretty: false
+- task: Xcode@5
+  inputs:
+    actions: '-exportArchive'
     packageApp: true
+    archivePath: '$(agent.buildDirectory)/archives/$(PROJECT_NAME)'
     exportPath: '$(agent.buildDirectory)/output/$(PROJECT_NAME)'
     signingOption: 'auto'
     teamId: '$(team_id)'
     useXcpretty: false
-# - task: Xcode@5
-#   inputs:
-#     actions: 'exportArchive'
-#     packageApp: true
-#     archivePath: 'archive/$(SCHEME)'
-#     exportPath: 'output/$(SCHEME)'
-#     signingOption: 'auto'
-#     teamId: '$(team_id)'
 - task: CmdLine@2
   inputs:
     script: 
