@@ -40,7 +40,7 @@ platform :ios do
 #    cocoapods
     build_app(project: "#{xcodeproj}",
               scheme: scheme,
-              sdk: iphonesimulator,
+              sdk: 'iphonesimulator',
               clean: true,
               export_team_id: 'VWUE9JZKY9')
     
