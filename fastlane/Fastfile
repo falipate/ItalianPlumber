@@ -26,42 +26,67 @@ platform :ios do
   lane :test do
     scan
   end
+  
+  desc "Build App"
+  lane :build_and_upload do
+    project_name = ENV['PROJECT_NAME']
+    scheme = ENV['SCHEME']
+    bundleID = ENV['BUNDLE_ID']
+    xcodeproj = "#{project_name}.xcodeproj"
+    bump_type = ENV['BUMP']
+    changelog = 'Fixes'
 
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "ItalianPlumber") # Build your app - more options available
-    pilot
-
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
+    clear_derived_data
+#    cocoapods
+    build_app(project: "#{xcodeproj}",
+              scheme: scheme,
+              clean: true)
+    
+    upload_to_testflight(
+      app_identifier: bundleID,
+      beta_app_review_info: {
+        contact_email: 'bszamody@gmail.com',
+        contact_first_name: 'Balazs',
+        contact_last_name: 'Szamody',
+        contact_phone: '0478015469'
+      },
+      changelog: changelog,
+      demo_account_required: false,
+      distribute_external: true,
+      groups: 'External Testers',
+    )
+    
+    bump
   end
 
-  desc "Deploy a new version to the App Store"
-  lane :release do
-    # match(type: "appstore")
-    # snapshot
-    gym(scheme: "ItalianPlumber") # Build your app - more options available
-    deliver(force: true)
-    # frameit
-  end
+  desc "Bump Version"
+  lane :bump do
+    project_name = ENV['PROJECT_NAME']
+    xcodeproj = "#{project_name}.xcodeproj"
+    bump = ENV['BUMP']
+    commit_tag = ENV['COMMIT_TAG']
 
-  # You can define as many lanes as you want
+    if bump != nil
+      version_number = get_version_number(xcodeproj: xcodeproj)
+      if bump == 'version'
+        add_git_tag(grouping: "", tag: version_number)
+        push_git_tags(tag: version_number)
+        increment_version_number(xcodeproj: xcodeproj)
+        build_number = increment_build_number(xcodeproj: xcodeproj, build_number: '1')
+        file_name = 'changelog.md'
+      elsif bump == 'build'
+        build_number = increment_build_number(xcodeproj: xcodeproj)
+        file_name = 'changelog_staging.md'
+      end
 
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
+      commit_version_bump(
+        message: "[#{commit_tag}] Version increased to #{version_number}(#{build_number})",
+        xcodeproj: xcodeproj,
+        include: [file_name]
+        )
 
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
-  end
-
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+      push_to_git_remote(remote_branch: "develop")
+    end
   end
 end
 
