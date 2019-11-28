@@ -47,3 +47,4 @@ steps:
         -destination generic/platform=iOS \
         archive \
         -archivePath archive/Archive
+      ls
