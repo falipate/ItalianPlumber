@@ -59,6 +59,7 @@ steps:
   displayName: 'Upload'
   inputs:
     script: |
+      echo $SESSION
       fastlane beta
   env:
     PROJECT_NAME: $(project)
@@ -67,7 +68,7 @@ steps:
     BUNDLE_ID: $(bundle_id)
     FASTLANE_PASSWORD: $(appstore_pw)
     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec_pw)
-    FASTLANE_SESSION: $(fastlane_session)
+    FASTLANE_SESSION: $(session)
 # - task: AppStoreRelease@1
 #   inputs:
 #     authType: 'UserAndPass'
