@@ -45,27 +45,36 @@ steps:
   inputs:
     secureFile: 'exportOptions.plist'
 - task: CmdLine@2
+  displayName: 'Build'
   inputs:
     script: |
       EXPORT_OPTIONS=$(exportOptions.securefilePath)
       echo $EXPORT_OPTIONS
-      NAME=$(profile_appstore)
       PROFILE=ItalianPlumberAppStore
       echo $PROFILE
-      /usr/libexec/PlistBuddy -c "Set :provisioningProfiles:$(bundle_id) $PROFILE" $EXPORT_OPTIONS
       cat $EXPORT_OPTIONS
       ./scripts/build.sh $EXPORT_OPTIONS
       ls
-- task: AppStoreRelease@1
+- task: CmdLine@2
+  displayName: 'Upload'
   inputs:
-    authType: 'UserAndPass'
-    username: 'bszamody@gmail.com'
-    password: '$(appstore_pw)'
-    isTwoFactorAuth: true
-    appSpecificPassword: '$(app_spec_pw)'
-    fastlaneSession: $(fastlane_session)
-    appIdentifier: '$(bundle_id)'
-    appType: 'iOS'
-    ipaPath: '**/*.ipa'
-    releaseTrack: 'TestFlight'
-    releaseNotes: 'Multiple fixes'
+    script: |
+      fastlane beta
+  env:
+    PROJECT_NAME: $(project)
+    SCHEME: $(scheme)
+    BUMP: $(bump)
+    BUNDLE_ID: $(bundle_id)
+# - task: AppStoreRelease@1
+#   inputs:
+#     authType: 'UserAndPass'
+#     username: 'bszamody@gmail.com'
+#     password: '$(appstore_pw)'
+#     isTwoFactorAuth: true
+#     appSpecificPassword: '$(app_spec_pw)'
+#     fastlaneSession: $(fastlane_session)
+#     appIdentifier: '$(bundle_id)'
+#     appType: 'iOS'
+#     ipaPath: '**/*.ipa'
+#     releaseTrack: 'TestFlight'
+#     releaseNotes: 'Multiple fixes'
