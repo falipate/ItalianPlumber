@@ -69,5 +69,3 @@ steps:
     ipaPath: '**/*.ipa'
     releaseTrack: 'TestFlight'
     releaseNotes: 'Multiple fixes'
-    distributedToExternalTesters: true
-    externalTestersGroups: 'External Testers'
