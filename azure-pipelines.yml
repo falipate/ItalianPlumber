@@ -52,7 +52,7 @@ steps:
       NAME=$(profile_appstore)
       PROFILE=ItalianPlumberAppStore
       echo $PROFILE
-      /usr/libexec/PlistBuddy - c 'Set :provisioningPrifiles:$(bundle_id) $PROFILE' $EXPORT_OPTIONS
+      /usr/libexec/PlistBuddy -c "Set :provisioningPrifiles:$(bundle_id) $PROFILE" $EXPORT_OPTIONS
       cat $EXPORT_OPTIONS
       ./scripts/build.sh $EXPORT_OPTIONS
       ls
