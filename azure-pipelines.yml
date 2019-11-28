@@ -13,82 +13,11 @@ variables:
 - group: main
 
 steps:
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: '$(certificate)'
-    certPwd: '$(certificate_pw)'
-    keychain: 'temp'
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: '$(certificate_dev)'
-    certPwd: '$(certificate_pw)'
-    keychain: 'temp'
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: '$(profile_appstore)'
-    removeProfile: false
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: '$(profile_dev)'
-    removeProfile: false
 - task: CmdLine@2
+  displayName: 'SPACEAUTH'
   inputs:
-    script: 'fastlane build_and_upload'
-# - task: CmdLine@2
-#   inputs:
-#     script: 'fastlane test'
-# - task: Xcode@5
-#   inputs:
-#     actions: 'clean build'
-#     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
-#     scheme: '$(SCHEME)'
-#     packageApp: false
-#     signingOption: 'auto'
-#     teamId: '$(team_id)'
-#     args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
-#     useXcpretty: false
-# - task: Xcode@5
-#   inputs:
-#     actions: 'clean build archive'
-#     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
-#     scheme: '$(SCHEME)'
-#     packageApp: false
-#     destinationPlatformOption: 'custom'
-#     destinationPlatform: 'generic/platform=iOS'
-#     args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
-#     useXcpretty: false
-# - task: Xcode@5
-#   inputs:
-#     actions: '-exportArchive'
-#     packageApp: true
-#     archivePath: '$(agent.buildDirectory)/archives/$(PROJECT_NAME)'
-#     exportPath: '$(agent.buildDirectory)/output/$(PROJECT_NAME)'
-#     args: '-exportArchive -exportPath $(agent.buildDirectory)/output/$(PROJECT_NAME) -archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME) CODE_SIGNING_STYLE=Automatic TEAM_ID=$(team_id)'
-#     signingOption: 'auto'
-#     teamId: '$(team_id)'
-#     useXcpretty: false
-# - task: CmdLine@2
-#   inputs:
-#     script: 
-#         ls -lahR $(agent.buildDirectory) | grep archive
-#         ls -lahR ~/Library/Developer/Xcode/DerivedData/ItalianPlumber*/ | grep archive
-# - task: AppStoreRelease@1
-#   inputs:
-#     authType: 'UserAndPass'
-#     username: 'bszamody@gmail.com'
-#     password: '$(apple_id_pw)'
-#     isTwoFactorAuth: true
-#     appSpecificPassword: '$(app_specific_pw)'
-#     fastlaneSession: '---\n- !ruby/object:HTTP::Cookie\n  name: DES5114d07b7f1af91f495ce6634c62f2453\n  value: HSARMTKNSRVXWFla7bVc8/JBWzv5UbH6N8s9sR2bYHYW/MdKbR7yzYo6gofmMuHY7BtZKqOdgAz703VsByAru8oc48T8aT9Mnw+ZbJ2eq+4nmsjmp2N+I3GPENbDMiN3CXUKlsB+5A==SRVX\n  domain: idmsa.apple.com\n  for_domain: true\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 2592000\n  created_at: 2019-11-27 13:40:29.920222000 +11:00\n  accessed_at: 2019-11-27 15:20:01.063204000 +11:00\n- !ruby/object:HTTP::Cookie\n  name: dqsid\n  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NzQ4Mjg0MDIsImp0aSI6ImQ0djBYUnp1WHZ4ZkRScXFpQlR6WXcifQ.SZJ2VnfusD6oNxLgA_T__ZnVHXAmh3eML0VnpzVydr0\n  domain: itunesconnect.apple.com\n  for_domain: false\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 1799\n  created_at: &1 2019-11-27 15:20:02.545192000 +11:00\n  accessed_at: *1\n'
-#     appIdentifier: '$(BUNDLE_ID)'
-#     appType: 'iOS'
-#     ipaPath: 'output/$(SCHEME)/$(PROJECT_NAME).ipa'
-#     releaseTrack: 'TestFlight'
-#     releaseNotes: 'Fixes'
-#     distributedToExternalTesters: true
-#     externalTestersGroups: 'External Testers'
-# - task: CmdLine@2
-#   inputs:
-#     script: 'fastlane bump'
+    script: 'fastlane spaceauth -u $EMAIL'
+  env:
+    FASTLANE_USER: $(apple_id)
+    FASTLANE_PASSWORD: $(app_store_pw)
+    FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec+_pw)
