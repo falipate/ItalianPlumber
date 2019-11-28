@@ -55,31 +55,31 @@ steps:
       cat $EXPORT_OPTIONS
       ./scripts/build.sh $EXPORT_OPTIONS
       ls
-- task: CmdLine@2
-  displayName: 'Upload'
-  inputs:
-    script: |
-      echo $SESSION
-      fastlane beta
-  env:
-    PROJECT_NAME: $(project)
-    SCHEME: $(scheme)
-    BUMP: $(bump)
-    BUNDLE_ID: $(bundle_id)
-    FASTLANE_PASSWORD: $(appstore_pw)
-    FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec_pw)
-    FASTLANE_SESSION: $(session)
-    SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: $(phone)
-# - task: AppStoreRelease@1
+# - task: CmdLine@2
+#   displayName: 'Upload'
 #   inputs:
-#     authType: 'UserAndPass'
-#     username: 'bszamody@gmail.com'
-#     password: '$(appstore_pw)'
-#     isTwoFactorAuth: true
-#     appSpecificPassword: '$(app_spec_pw)'
-#     fastlaneSession: $(fastlane_session)
-#     appIdentifier: '$(bundle_id)'
-#     appType: 'iOS'
-#     ipaPath: '**/*.ipa'
-#     releaseTrack: 'TestFlight'
-#     releaseNotes: 'Multiple fixes'
+#     script: |
+#       echo $SESSION
+#       fastlane beta
+#   env:
+#     PROJECT_NAME: $(project)
+#     SCHEME: $(scheme)
+#     BUMP: $(bump)
+#     BUNDLE_ID: $(bundle_id)
+#     FASTLANE_PASSWORD: $(appstore_pw)
+#     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec_pw)
+#     FASTLANE_SESSION: $(session)
+#     SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: $(phone)
+- task: AppStoreRelease@1
+  inputs:
+    authType: 'UserAndPass'
+    username: 'bszamody@gmail.com'
+    password: '$(appstore_pw)'
+    isTwoFactorAuth: true
+    appSpecificPassword: '$(app_spec_pw)'
+    fastlaneSession: $(fastlane_session)
+    appIdentifier: '$(bundle_id)'
+    appType: 'iOS'
+    ipaPath: '**/*.ipa'
+    releaseTrack: 'TestFlight'
+    releaseNotes: 'Multiple fixes'
