@@ -48,6 +48,7 @@ steps:
       xcodebuild \
         -project ItalianPlumber.xcodeproj \
         -scheme ItalianPlumber \
+        CODE_SIGN_STYLE=Automatic \
         # -sdk iphoneos \
         -destination generic/platform=iOS \
         archive \
