@@ -43,7 +43,7 @@ steps:
       xcodebuild \
         -project ItalianPlumber.xcodeproj \
         -scheme ItalianPlumber \
-        -sdk iphonesimulator
-        -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=13.1' \
-        archive
+        -sdk iphonesimulator \
+        -destination generic/platform=iOS \
+        archive \
         -archivePath archive/Archive
