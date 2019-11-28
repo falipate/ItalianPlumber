@@ -40,15 +40,8 @@ platform :ios do
 #    cocoapods
     gym(project: "#{xcodeproj}",
               scheme: scheme,
-              sdk: 'iphonesimulator',
               clean: true,
-              export_team_id: 'VWUE9JZKY9',
-              export_options: {
-                method: "app-store",
-                provisioningProfiles: { 
-                    "#{bundleID}" => "78ef6e7c-62c8-443d-aa09-0eca5fcce97e"
-                }
-              }
+              export_team_id: 'VWUE9JZKY9'
             )
     
     pilot(
