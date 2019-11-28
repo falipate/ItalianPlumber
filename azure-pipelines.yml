@@ -48,7 +48,7 @@ steps:
       xcodebuild \
         -project ItalianPlumber.xcodeproj \
         -scheme ItalianPlumber \
-        -sdk iphoneos \
+        # -sdk iphoneos \
         -destination generic/platform=iOS \
         archive \
         -archivePath archive/Archive
