@@ -30,22 +30,22 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: '$(profile_dev)'
     removeProfile: false
-# - task: CmdLine@2
-#   inputs:
-#     script: 'fastlane build_and_upload'
+- task: CmdLine@2
+  inputs:
+    script: 'fastlane build_and_upload'
 # - task: CmdLine@2
 #   inputs:
 #     script: 'fastlane test'
-- task: Xcode@5
-  inputs:
-    actions: 'clean build'
-    xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
-    scheme: '$(SCHEME)'
-    packageApp: false
-    signingOption: 'auto'
-    teamId: '$(team_id)'
-    args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
-    useXcpretty: false
+# - task: Xcode@5
+#   inputs:
+#     actions: 'clean build'
+#     xcWorkspacePath: '$(PROJECT_NAME).xcodeproj'
+#     scheme: '$(SCHEME)'
+#     packageApp: false
+#     signingOption: 'auto'
+#     teamId: '$(team_id)'
+#     args: '-archivePath $(agent.buildDirectory)/archives/$(PROJECT_NAME)'
+#     useXcpretty: false
 # - task: Xcode@5
 #   inputs:
 #     actions: 'clean build archive'
