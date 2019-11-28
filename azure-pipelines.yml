@@ -43,6 +43,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      ls
       xcodebuild \
         -project ItalianPlumber.xcodeproj \
         -scheme ItalianPlumber \
