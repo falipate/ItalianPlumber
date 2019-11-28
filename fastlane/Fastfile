@@ -41,7 +41,13 @@ platform :ios do
     gym(project: "#{xcodeproj}",
               scheme: scheme,
               clean: true,
-              export_team_id: 'VWUE9JZKY9'
+              export_team_id: 'VWUE9JZKY9',
+              export_options: {
+                method: "app-store",
+                provisioningProfiles: { 
+                    "#{bundleID}" => "78ef6e7c-62c8-443d-aa09-0eca5fcce97e"
+                }
+              }
             )
     
     pilot(
