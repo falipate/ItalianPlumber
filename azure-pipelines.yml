@@ -47,20 +47,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      ./scrits/build.sh $(exportOptions.securefilePath)
       ls
-      xcodebuild \
-        -project ItalianPlumber.xcodeproj \
-        -scheme ItalianPlumber \
-        -sdk iphoneos \
-        -destination generic/platform=iOS \
-        CODE_SIGN_STYLE=Automatic \
-        archive \
-        -archivePath archive/Archive
-      xcodebuild \
-        -exportArchive \
-        -exportOptionsPlist $(exportOptions.securefilePath) \
-        -archivePath archive/Archive.xcarchive \
-        -exportPath output/ItalianPlumber
 - task: AppStoreRelease@1
   inputs:
     authType: 'UserAndPass'
