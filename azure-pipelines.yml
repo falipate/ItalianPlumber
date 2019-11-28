@@ -37,6 +37,9 @@ steps:
 #     packageApp: true
 #     exportPath: 'output/'
 #     signingOption: 'default'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'exportOptions.plist'
 - task: CmdLine@2
   inputs:
     script: |
@@ -47,4 +50,8 @@ steps:
         -destination generic/platform=iOS \
         archive \
         -archivePath archive/Archive
-      ls
+    xcodebuild \
+      -exportArchive \
+      -exportOptionsPlist exportOptions.plist \
+      -archivePath archive/Archive.xcarchive \
+      -exportPath output/ItalianPlumber
