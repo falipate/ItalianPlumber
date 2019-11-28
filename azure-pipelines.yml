@@ -68,6 +68,6 @@ steps:
     appType: 'iOS'
     ipaPath: '**/*.ipa'
     releaseTrack: 'TestFlight'
-    releaseNotes: 'Fix'
+    releaseNotes: 'Multiple fixes'
     distributedToExternalTesters: true
     externalTestersGroups: 'External Testers'
