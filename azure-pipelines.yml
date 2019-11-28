@@ -40,9 +40,10 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      xcodebuild \
-      -project ItalianPlumber.xcodeproj \
-      -scheme ItalianPlumber \
-      -destination 'generic/platform=iOS' \
-      build
-    #   xcodebuild
+      ls ~/Library/MobileDevice/Prov*
+      echo DONE
+    #   xcodebuild \
+    #   -project ItalianPlumber.xcodeproj \
+    #   -scheme ItalianPlumber \
+    #   -destination 'generic/platform=iOS' \
+    #   build
