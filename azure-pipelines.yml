@@ -58,3 +58,18 @@ steps:
         -exportOptionsPlist $(exportOptions.securefilePath) \
         -archivePath archive/Archive.xcarchive \
         -exportPath output/ItalianPlumber
+- task: AppStoreRelease@1
+  inputs:
+    authType: 'UserAndPass'
+    username: 'bszamody@gmail.com'
+    password: '$(appstore_pw)'
+    isTwoFactorAuth: true
+    appSpecificPassword: '$(app_spec_pw)'
+    fastlaneSession: '---\n- !ruby/object:HTTP::Cookie\n  name: DES5114d07b7f1af91f495ce6634c62f2453\n  value: HSARMTKNSRVXWFla+avSle5lCIg15I+4/HjTePHHZfASR0DAv+0WAU63TdC/oQqP9WQKfBsUPI5wz25SUeGX4d9R5Yj0mx52Tkifl2WtpU7/TJxjoXBbk7CrORnXfX3TWMANG1ZN4Q==SRVX\n  domain: idmsa.apple.com\n  for_domain: true\n  path: "/"\n  secure: true\n  httponly: true\n  expires: \n  max_age: 2592000\n  created_at: &1 2019-11-28 14:48:31.425150000 +11:00\n  accessed_at: *1\n'
+    appIdentifier: '$(bundle_id)'
+    appType: 'iOS'
+    ipaPath: '**/*.ipa'
+    releaseTrack: 'TestFlight'
+    releaseNotes: 'Fix'
+    distributedToExternalTesters: true
+    externalTestersGroups: 'External Testers'
