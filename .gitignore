@@ -2,3 +2,5 @@
 *.xcarchive
 
 *.xcuserstate
+
+output/
