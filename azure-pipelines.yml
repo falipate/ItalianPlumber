@@ -45,5 +45,5 @@ steps:
         -scheme ItalianPlumber \
         -sdk iphonesimulator
         -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=13.1' \
-        build \
-        test
+        archive
+        -archivePath archive/Archive
