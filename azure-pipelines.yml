@@ -47,7 +47,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      ./scrits/build.sh $(exportOptions.securefilePath)
+      echo $(exportOptions.securefilePath)
+      ./scripts/build.sh $(exportOptions.securefilePath)
       ls
 - task: AppStoreRelease@1
   inputs:
