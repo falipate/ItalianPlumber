@@ -69,6 +69,7 @@ steps:
     FASTLANE_PASSWORD: $(appstore_pw)
     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec_pw)
     FASTLANE_SESSION: $(session)
+    SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: $(phone)
 # - task: AppStoreRelease@1
 #   inputs:
 #     authType: 'UserAndPass'
