@@ -40,10 +40,10 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      ls ~/Library/MobileDevice/Prov*
-      echo DONE
-    #   xcodebuild \
-    #   -project ItalianPlumber.xcodeproj \
-    #   -scheme ItalianPlumber \
-    #   -destination 'generic/platform=iOS' \
-    #   build
+      xcodebuild \
+        -project ItalianPlumber.xcodeproj \
+        -scheme ItalianPlumber \
+        -sdk iphonesimulator
+        -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=13.1' \
+        build \
+        test
