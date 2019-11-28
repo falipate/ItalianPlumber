@@ -47,7 +47,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      echo $(exportOptions.securefilePath)
+      EXPORT_OPTIONS=$(exportOptions.securefilePath)
+      echo $EXPORT_OPTIONS
+      PROFILE=${$(profile_appstore)%%.*}
+      echo $PROFILE
+      /usr/libexec/PlistBuddy - c 'Set :provisioningPrifiles:$(bundle_id) $PROFILE' $EXPORT_OPTIONS
       ./scripts/build.sh $(exportOptions.securefilePath)
       ls
 - task: AppStoreRelease@1
