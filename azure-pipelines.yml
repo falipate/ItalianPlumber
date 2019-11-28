@@ -16,8 +16,8 @@ steps:
 - task: CmdLine@2
   displayName: 'SPACEAUTH'
   inputs:
-    script: 'fastlane spaceauth -u $EMAIL'
-  env:
+    script: 'fastlane spaceauth -u $FASTLANE_USER'
+  env: 
     FASTLANE_USER: $(apple_id)
     FASTLANE_PASSWORD: $(app_store_pw)
     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec+_pw)
