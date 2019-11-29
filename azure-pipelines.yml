@@ -11,7 +11,6 @@ pool:
 
 variables:
 - group: main
-- name: profile
 
 steps:
 - task: InstallAppleCertificate@2
