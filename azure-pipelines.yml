@@ -11,6 +11,7 @@ pool:
 
 variables:
 - group: main
+- name: profile
 
 steps:
 - task: InstallAppleCertificate@2
@@ -48,13 +49,27 @@ steps:
   displayName: 'Build'
   inputs:
     script: |
-      EXPORT_OPTIONS=$(exportOptions.securefilePath)
-      echo $EXPORT_OPTIONS
-      PROFILE=ItalianPlumberAppStore
-      echo $PROFILE
-      cat $EXPORT_OPTIONS
-      ./scripts/build.sh $EXPORT_OPTIONS
-      ls
+      fastlane build
+  env:
+    PROJECT_NAME: $(project)
+    SCHEME: $(scheme)
+    BUMP: $(bump)
+    BUNDLE_ID: $(bundle_id)
+    PROFILE: $(profile_appstore)
+    EXPORT_METHOD: 'app-store'
+    
+    
+#- task: CmdLine@2
+#  displayName: 'Build'
+#  inputs:
+#    script: |
+#      EXPORT_OPTIONS=$(exportOptions.securefilePath)
+#      echo $EXPORT_OPTIONS
+#      PROFILE=ItalianPlumberAppStore
+#      echo $PROFILE
+#      cat $EXPORT_OPTIONS
+#      ./scripts/build.sh $EXPORT_OPTIONS
+#      ls
 # - task: CmdLine@2
 #   displayName: 'Upload'
 #   inputs:

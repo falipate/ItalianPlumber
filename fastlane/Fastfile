@@ -16,31 +16,53 @@ fastlane_version "2.28.3"
 default_platform :ios
 
 platform :ios do
+	
+	
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    
-    
+		$project_name = ENV['PROJECT_NAME']
+#		$output_dir = ENV['OUTPUT_DIR']
+		$bundleID = ENV['BUNDLE_ID']
+		$bump_type = ENV['BUMP']
   end
 
   desc "Runs all the tests"
   lane :test do
     scan
   end
+  
+  desc "Build APP"
+  lane :build do
+		xcodeproj = "#{$project_name}.xcodeproj"
+		scheme = ENV['SCHEME']
+		profile = ENV['PROFILE']
+		export_method = ENV['EXPORT_METHOD']
+		
+		gym(
+			clean: true,
+#			output_directoy: $output_dir,
+			project: xcodeproj,
+			scheme: scheme,
+			export_method: export_method,
+			export_options: {
+				method: export_method,
+				provisioningProfiles: {
+					'#{$bundle_id}': '#{profile.split('.', 2)}'
+				}
+			}
+			)
+  end
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-      project_name = ENV['PROJECT_NAME']
-      scheme = ENV['SCHEME']
-      bundleID = ENV['BUNDLE_ID']
-      xcodeproj = "#{project_name}.xcodeproj"
-      bump_type = ENV['BUMP']
-      export_path= ENV['EXPORT_PATH']
+      export_path = '#{$output_dir}/#{project_name}.ipa'
+      export_method = ENV['EXPORT_METHOD']
       changelog = 'Fixes'
       
       pilot(
             app_identifier: bundleID,
-            ipa: export_path,
+#            ipa: export_path,
             skip_submission: true,
 #            beta_app_review_info: {
 #                contact_email: 'bszamody@gmail.com',
