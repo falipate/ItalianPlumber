@@ -22,7 +22,7 @@ platform :ios do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
 		$project_name = ENV['PROJECT_NAME']
 #		$output_dir = ENV['OUTPUT_DIR']
-		$bundleID = ENV['BUNDLE_ID']
+		$bundle_id = ENV['BUNDLE_ID']
 		$bump_type = ENV['BUMP']
   end
 
@@ -47,7 +47,7 @@ platform :ios do
 			export_options: {
 				method: export_method,
 				provisioningProfiles: {
-					'#{$bundle_id}': profile_name
+					'#{bundle_id}': profile_name
 				}
 			}
 			)
