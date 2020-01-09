@@ -1,0 +1,16 @@
+default: &default
+  PROJECT_NAME: 'ItalianPlumber'
+  SCHEME: 'ItalianPlumber'
+  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: 'octh-znvm-xboy-mnjt'
+  BUNDLE_ID: 'com.bszamody.ItalianPlumber'
+  BUMP: 'version'
+  COMMIT_TAG: 'AUTO'
+
+steps:
+  - label: 'Test Build'
+    branches: 'code-climate'
+    command: 'source ~/.bashrc && bundle exec fastlane test'
+    env:
+      <<: *default
+    agents:
+      ios: 'build'
