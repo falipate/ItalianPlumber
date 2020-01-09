@@ -7,10 +7,20 @@ steps:
   - label: 'Test Build'
     branches: 'code-climate'
     command: 
+      - "echo --- :fastlane: running test"
       - "source ~/.bashrc && fastlane test"
-      - "ls xml_report"
+      - "echo --- :codeclimate: generating and uploading coverage results"
       - "buildkite-agent artifact upload xml_report/cobertura.xml"
     env:
       <<: *default
     agents:
+      ios: 'build'
+
+  - label: 'Code Climate'
+    branches: 'code-climate'
+    command:
+      - "echo --- :codeclimate: Download Coverage results"
+    env:
+      <<: *default
+    agents: 
       ios: 'build'
