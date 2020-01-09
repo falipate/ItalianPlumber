@@ -6,8 +6,9 @@ default: &default
 steps:
   - label: 'Test Build'
     branches: 'code-climate'
-    command: 'source ~/.bashrc && fastlane test'
-    artifact_paths: 'xml_report'
+    command: 
+      - "source ~/.bashrc && fastlane test"
+      - "ls"
     env:
       <<: *default
     agents:
