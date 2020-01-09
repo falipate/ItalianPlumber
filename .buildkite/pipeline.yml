@@ -8,7 +8,7 @@ steps:
     branches: 'code-climate'
     command: 
       - "source ~/.bashrc && fastlane test"
-      - "ls"
+      - "ls xml_report"
     env:
       <<: *default
     agents:
