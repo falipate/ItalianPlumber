@@ -10,7 +10,7 @@ steps:
       - "echo --- :fastlane: running test"
       - "source ~/.bashrc && fastlane test"
       - "echo --- :codeclimate: generating and uploading coverage results"
-      - "buildkite-agent artifact upload xml_report/cobertura.xml"
+      - "buildkite-agent artifact upload coverage_report/cobertura.xml"
     env:
       <<: *default
     agents:
@@ -20,8 +20,9 @@ steps:
     branches: 'code-climate'
     command:
       - "echo --- :codeclimate: Download Coverage results"
+      - "mkdir -p coverage_report"
       - "ls"
-      - "buildkite-agent artifact download xml_report/* xml_report/"
+      - "buildkite-agent artifact download coverage_report/*"
 
     env:
       <<: *default
