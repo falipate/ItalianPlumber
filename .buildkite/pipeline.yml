@@ -2,8 +2,6 @@ default: &default
   PROJECT_NAME: 'ItalianPlumber'
   SCHEME: 'ItalianPlumber'
   BUNDLE_ID: 'com.bszamody.ItalianPlumber'
-  BUMP: 'version'
-  COMMIT_TAG: 'AUTO'
 
 steps:
   - label: 'Test Build'
