@@ -4,13 +4,14 @@ default: &default
   BUNDLE_ID: 'com.bszamody.ItalianPlumber'
 
 steps:
-  - label: 'Test Build'
+  - label: 'Run Tests'
     branches: 'code-climate'
     command: 
       - "echo --- :fastlane: running test"
       - "source ~/.bashrc && fastlane test"
       - "echo --- :codeclimate: generating and uploading coverage results"
       - "buildkite-agent artifact upload xml_report/cobertura.xml"
+      - "buildkite-agent artifact upload buildTest.sh"
     env:
       <<: *default
     agents:
