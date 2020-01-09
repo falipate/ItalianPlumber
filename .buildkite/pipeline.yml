@@ -11,7 +11,6 @@ steps:
       - "source ~/.bashrc && fastlane test"
       - "echo --- :codeclimate: generating and uploading coverage results"
       - "buildkite-agent artifact upload xml_report/cobertura.xml"
-      - "buildkite-agent artifact upload buildTest.sh"
     env:
       <<: *default
     agents:
@@ -22,7 +21,7 @@ steps:
     command:
       - "echo --- :codeclimate: Download Coverage results"
       - "ls"
-      - "buildkite-agent artifact download xml_report/cobertura.xml"
+      - "buildkite-agent artifact download xml_report/* xml_report/"
 
     env:
       <<: *default
