@@ -6,7 +6,7 @@ default: &default
 steps:
   - label: 'Test Build'
     branches: 'code-climate'
-    command: 'source ~/.bashrc && bundle exec fastlane test'
+    command: 'source ~/.bashrc && fastlane test'
     env:
       <<: *default
     agents:
