@@ -20,6 +20,9 @@ steps:
     branches: 'code-climate'
     command:
       - "echo --- :codeclimate: Download Coverage results"
+      - "ls"
+      - "buildkite-agent artifact download xml_report/cobertura.xml"
+
     env:
       <<: *default
     agents: 
