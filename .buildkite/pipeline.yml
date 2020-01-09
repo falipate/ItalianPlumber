@@ -22,7 +22,7 @@ steps:
       - "echo --- :codeclimate: Download Coverage results"
       - "mkdir -p coverage_report"
       - "ls"
-      - "buildkite-agent artifact download coverage_report/*"
+      - "buildkite-agent artifact download coverage_report/* coverage_report/"
 
     env:
       <<: *default
