@@ -9,6 +9,7 @@ steps:
     command: 
       - "source ~/.bashrc && fastlane test"
       - "ls xml_report"
+      - "buildkite-agent artifact upload cobertura.xml"
     env:
       <<: *default
     agents:
