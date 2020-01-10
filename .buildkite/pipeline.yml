@@ -23,6 +23,18 @@ steps:
       - "mkdir -p coverage_report"
       - "ls"
       - "buildkite-agent artifact download coverage_report/* coverage_report/"
+      
+      - "echo --- :codeclimate: Download Codeclimate"
+      - "curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter"
+
+      - "echo --- :codeclimate: Configure Permissions"
+      - "chmod +x ./cc-test-reporter"
+
+      - "echo --- :codeclimate: Prebuild"
+      - "./cc-test-reporter before-build"
+
+      # - "echo --- :codeclimate: Format Coverage"
+      # - "./cc-test-reporter format-coverage -t "
 
     env:
       <<: *default
