@@ -40,7 +40,7 @@ steps:
       - "./cc-test-reporter upload-coverage"
 
       - "echo --- :codeclimate: Finalising"
-      - "./cc-test-reporter after-build -t cobertura --exit-code 0"
+      - "./cc-test-reporter after-build --exit-code 0"
 
     env:
       <<: *default
