@@ -9,7 +9,7 @@ steps:
     command: 
       - "echo --- :fastlane: running test"
       - "source ~/.bashrc && fastlane test"
-      - "echo --- :codeclimate: generating and uploading coverage results"
+      - "echo --- :buildkite: generating and uploading coverage results"
       - "buildkite-agent artifact upload coverage_report/cobertura.xml"
     env:
       <<: *default
@@ -35,6 +35,12 @@ steps:
 
       - "echo --- :codeclimate: Format Coverage"
       - "./cc-test-reporter format-coverage -t cobertura"
+
+      - "echo --- :codeclimate: Upload Coverage"
+      - "./cc-test-reporter upload-coverage"
+
+      - "echo --- :codeclimate: Finalising"
+      - "./cc-test-reporter after-build --exit-code 0"
 
     env:
       <<: *default
