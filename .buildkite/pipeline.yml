@@ -33,8 +33,8 @@ steps:
       - "echo --- :codeclimate: Prebuild"
       - "./cc-test-reporter before-build"
 
-      # - "echo --- :codeclimate: Format Coverage"
-      # - "./cc-test-reporter format-coverage -t "
+      - "echo --- :codeclimate: Format Coverage"
+      - "./cc-test-reporter format-coverage -t cobertura"
 
     env:
       <<: *default
