@@ -39,9 +39,6 @@ steps:
       - "echo --- :codeclimate: Upload Coverage"
       - "./cc-test-reporter upload-coverage"
 
-      - "echo --- :codeclimate: Finalising"
-      - "./cc-test-reporter after-build --exit-code 0"
-
     env:
       <<: *default
     agents: 
