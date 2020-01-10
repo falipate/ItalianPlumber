@@ -34,7 +34,7 @@ steps:
       - "./cc-test-reporter before-build"
 
       - "echo --- :codeclimate: Format Coverage"
-      - "./cc-test-reporter format-coverage -t cobertura"
+      - "./cc-test-reporter format-coverage -t cobertura.xml"
 
       - "echo --- :codeclimate: Upload Coverage"
       - "./cc-test-reporter upload-coverage"
