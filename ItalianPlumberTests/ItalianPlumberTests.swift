@@ -37,6 +37,12 @@ class ItalianPlumberTests: XCTestCase {
         XCTAssertEqual(result, text)
         
     }
+    
+    func testTwo() {
+        let one = 1
+        
+        XCTAssertEqual(one, one)
+    }
 }
 
 
