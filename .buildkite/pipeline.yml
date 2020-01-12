@@ -5,7 +5,7 @@ default: &default
 
 steps:
   - label: 'Run Tests'
-    branches: 'code-climate'
+    branches: 'master'
     command: 
       - "echo --- :fastlane: running test"
       - "source ~/.bashrc && fastlane test"
@@ -17,7 +17,7 @@ steps:
       ios: 'build'
 
   - label: 'Code Climate'
-    branches: 'code-climate'
+    branches: 'master'
     command:
       - "echo --- :codeclimate: Download Coverage results"
       - "mkdir -p coverage_report"
