@@ -35,18 +35,6 @@ class ItalianPlumberTests: XCTestCase {
         waitForExpectations(timeout: 30, handler: nil)
         
         XCTAssertEqual(result, text)
-        
-    }
-    
-    func testTwo() {
-        let one = 2
-        
-        XCTAssertEqual(one, 2)
-    }
-    
-    func testThree() {
-        let two = 2
-        XCTAssertEqual(two, 2)
     }
 }
 
@@ -55,13 +43,23 @@ class MockViewModel: ViewModel {
     let text: String
     var timeString = PassthroughSubject<String?, Never>()
     
+    var timer: Timer!
     var disposeBag = DisposeBag()
     
     init(_ text: String) {
         self.text = text
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fireTimer(_:)), userInfo: nil, repeats: true)
     }
     
     func send() {
         timeString.send(text)
+    }
+    
+    @objc func fireTimer(_ sender: Timer) {
+        let date = sender.fireDate
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        formatter.timeZone = TimeZone.current
+        timeString.send(formatter.string(from: date))
     }
 }
